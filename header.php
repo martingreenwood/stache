@@ -19,7 +19,7 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class($pagename); ?>>
 <div id="page" class="site">
 
 	<div id="loader">
@@ -35,18 +35,16 @@
 				<div class="site-branding">
 					<?php if ( function_exists( 'the_custom_logo' ) ): ?>
 						<?php the_custom_logo(); ?>
-					<?php else: ?>
-						<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<?php endif; ?>
 				</div>
 				<nav id="site-navigation" class="main-navigation" role="navigation">
-					<div class="menu-toggle menu-icon menu-icon indent">
+					<button class="menu-toggle menu-icon menu-icon indent">
 					  <span class="menu-icon__text">Show Menu</span>
-					</div>
+					</button>
 					<?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
 				</nav>
 			</div>
 		</div>
-	</header><!-- #masthead -->
+	</header>
 
 	<div id="content" class="site-content">

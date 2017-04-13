@@ -8,38 +8,10 @@
 get_header(); ?>
 
 
-	<section>
-
-		<div class="container">
-			
-			<div class="laptop">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/laptop-user.jpg">
-				<div class="glow">
-					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/glow.png">
-				</div>
-			</div>
-
-		</div>
-
-	</section>
-
-	<section>
-
-		<div class="container">
-			
-			<div class="switchbox">
-				<a class="switch" href="#">Switch On</a>
-			</div>
-			<div class="lightsoff">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/lightsoff.jpg">
-				<div class="lightson">
-					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/lightson.jpg">
-				</div>
-			</div>
-
-		</div>
-
-	</section>
+	<?php 
+	$featureimage = wp_get_attachment_url( get_post_thumbnail_id($post->ID));
+	?>
+	<section id="feature-image" class="parallax-window" data-bleed="50" data-parallax="scroll" data-image-src="<?php echo $featureimage; ?>"></section>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main container" role="main">
@@ -68,7 +40,43 @@ get_header(); ?>
 		endif; ?>
 
 		</main><!-- #main -->
-	</div><!-- #primary -->
+
+		<section id="offerings">
+			<div class="container">
+			<?php
+			if( have_rows('feature_content') ):
+				while ( have_rows('feature_content') ) : the_row();
+					$title = get_sub_field('title');
+					$link = get_sub_field('link');
+					$text = get_sub_field('text');
+					?>
+					<div class="offering span4">
+						<h2><?php echo $title; ?></h2>
+						<?php echo $text; ?>
+						<a href="<?php echo $link; ?>">See More</a>
+					</div>
+					<?php
+				endwhile;
+			endif;
+			?>
+			</div>
+		</section>
+
+	</div>
+
+	<div id="brands">
+		<div class="container">
+		<?php $brands = get_field('brands', 'options'); if( $brands ): ?>
+			<div class="brandicons">
+			<?php foreach( $brands as $brand ): ?>
+				<div class='brandicon'>
+					<img src="<?php echo $brand['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+				</div>
+			<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		</div>
+	</div>
 
 <?php
 get_footer();

@@ -1,0 +1,53 @@
+{
+    "key": "group_58dd13fba8258",
+    "title": "Portfolio Width",
+    "fields": [
+        {
+            "key": "field_58dd140bf85e7",
+            "label": "",
+            "name": "portfolio_width",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "25": "Default",
+                "50": "50% Width",
+                "75": "75% Width",
+                "100": "Full Width"
+            },
+            "default_value": [
+                25
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 1,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "portfolio"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1490883695
+}

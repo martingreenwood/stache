@@ -43,5 +43,30 @@ get_header(); ?>
 		</main>
 	</div>
 
+	<div id="team">
+		<div class="container narrow">
+		<?php $i = 1; $team = new WP_Query( array( 'post_type' => 'team', 'posts_per_page' => -1 ) ); ?>
+			<div class="members row">
+			<?php while ( $team->have_posts() ) : $team->the_post(); ?>
+				<div class="member span4">
+
+					<?php $teamimage = wp_get_attachment_url( get_post_thumbnail_id($team->ID)); ?>
+					<div class="image" style="background-image: url(<?php echo $teamimage; ?>);">
+						<?php the_post_thumbnail( 'full' ); ?>
+					</div>
+
+					<h2><?php the_title( ); ?></h2>
+					<h3><?php the_field( 'sub_heading' ); ?></h3>
+					<?php the_content(); ?>
+
+				</div>
+				<?php
+     			if($i % 3 == 0) {echo '</div><div class="members row">';} $i++;
+     			?>
+			<?php endwhile; wp_reset_query(); ?>
+			</div>
+		</div>
+	</div>
+
 <?php
 get_footer();

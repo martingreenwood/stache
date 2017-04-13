@@ -12,7 +12,7 @@
 		return;
 	}
 
-	button = container.getElementById( 'menu-icon' )[0];
+	button = container.getElementsByTagName( 'button' )[0];
 	if ( 'undefined' === typeof button ) {
 		return;
 	}

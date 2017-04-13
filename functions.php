@@ -46,10 +46,12 @@ function stache_setup() {
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
 	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'team', '600', '600', true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'menu-1' => esc_html__( 'Primary', 'stache' ),
+		'menu-2' => esc_html__( 'Footer', 'stache' ),
 	) );
 
 	/*
@@ -107,10 +109,48 @@ function stache_scripts() {
 	wp_enqueue_style( 'stache-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'stache-nav', get_template_directory_uri() . '/js/navigation-min.js', '', '', true );
-	wp_enqueue_script( 'stache-js', get_template_directory_uri() . '/js/stache-min.js', '', '', true );
+	wp_enqueue_script( 'stache-parallax', get_template_directory_uri() . '/assets/js/parallax.min.js','','',true );
+	wp_enqueue_script( 'stache-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDghRTYRnA6R3P1LJ6wJP4AjTFoDsva0jk','','',true );
+	wp_enqueue_script( 'stache-slick', get_template_directory_uri() . '/assets/js/slick.min.js','','',true );
+	wp_enqueue_script( 'stache-masonry', '//unpkg.com/masonry-layout@4.1.1/dist/masonry.pkgd.min.js','','',true );
+	wp_enqueue_script( 'stache-imgload', '//unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js','','',true );
+	wp_enqueue_script( 'stache-nav', get_template_directory_uri() . '/assets/js/navigation-min.js','','',true );
+	wp_enqueue_script( 'stache-js', get_template_directory_uri() . '/assets/js/stache-min.js','','',true );
 }
 add_action( 'wp_enqueue_scripts', 'stache_scripts' );
+
+
+/**
+ * GMAPS API for ACF Pro
+ * AIzaSyDghRTYRnA6R3P1LJ6wJP4AjTFoDsva0jk
+ */
+function my_acf_init() {
+	
+	acf_update_setting('google_api_key', 'AIzaSyDghRTYRnA6R3P1LJ6wJP4AjTFoDsva0jk');
+}
+
+add_action('acf/init', 'my_acf_init');
+
+
+/**
+ * TYPEKIT
+ */
+function stache_typekit() {
+?>
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'ybl7ozu',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<?php
+}
+add_action('wp_head', 'stache_typekit', 99);
+
 
 /**
  * Custom post types.

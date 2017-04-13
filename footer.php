@@ -11,16 +11,17 @@
 
 ?>
 
-	</div><!-- #content -->
+	</div>
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'stache' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'stache' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'stache' ), 'stache', '<a href="https://automattic.com/" rel="designer">Martin Greenwood</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+			<?php the_field( 'footer_content', 'options' );	?>
+		</div>
+		<nav id="footer-navigation" class="footer-navigation" role="navigation">
+			<?php wp_nav_menu( array( 'theme_location' => 'menu-2', 'menu_id' => 'footer-menu' ) ); ?>
+		</nav>
+	</footer>
+</div>
 
 <?php wp_footer(); ?>
 

@@ -29,6 +29,16 @@ $cpts = array(
 		array('title','editor','thumbnail'),
 		true,
 	),
+
+	// Portfolio
+	array(
+		'portfolio',
+		'Portfolio',
+		'Portfolio',
+		'dashicons-laptop', 
+		array('title','editor','thumbnail'),
+		true,
+	),
 );
 
 function stache_cpts_register() {
@@ -79,6 +89,7 @@ function stache_cpts_register() {
 add_action('init', 'stache_cpts_register');
 
 function stache_taxonomies() {
+	// team
 	register_taxonomy(
 		'disciplines',
 		'team',
@@ -101,6 +112,36 @@ function stache_taxonomies() {
 			'name' => 'Positions',
 			'add_new_item' => 'Add Positions',
 			'new_item_name' => "New Positions"
+		),
+			'show_ui' => true,
+			'show_tagcloud' => false,
+			'hierarchical' => true
+		)
+	);
+
+	// portfolio
+	register_taxonomy(
+		'project-category',
+		'portfolio',
+		array(
+			'labels' => array(
+			'name' => 'Project Categories',
+			'add_new_item' => 'Add Project Categories',
+			'new_item_name' => "New Project Categories"
+		),
+			'show_ui' => true,
+			'show_tagcloud' => false,
+			'hierarchical' => true
+		)
+	);
+	register_taxonomy(
+		'project-attribute',
+		'portfolio',
+		array(
+			'labels' => array(
+			'name' => 'Project Attributes',
+			'add_new_item' => 'Add Attributes',
+			'new_item_name' => "New Attributes"
 		),
 			'show_ui' => true,
 			'show_tagcloud' => false,
