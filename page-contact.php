@@ -13,7 +13,7 @@ get_header(); ?>
 	<section id="feature-image" class="parallax-window" data-bleed="50" data-parallax="scroll" data-image-src="<?php echo $featureimage; ?>">
 		<div class="caption table">
 			<div class="cell bottom">
-				<div class="container">
+				<div class="wrapper">
 					<h1><?php the_title(); ?></h1>
 					<hr>
 					<h2><?php the_field( 'sub_heading' ); ?></h2>

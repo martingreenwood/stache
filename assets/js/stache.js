@@ -9,7 +9,7 @@
 =            LOADER            =
 ==============================*/
 
-(function(){
+(function($){
 
 	function id(v){ return document.getElementById(v); }
 	function loadbar() {
@@ -58,6 +58,45 @@
 	$document.scroll(function() {
 		$element.toggleClass(className, $document.scrollTop() >= 10);
 	});
+
+	// $(document).scroll( function() {
+	// 	var scrollTop = $(this).scrollTop() + 100; // 40px - Fixed nav height
+	// 	var closestElement = $(this).find('.section').filter( function() {
+	// 		return $(this).offset().top > scrollTop;      
+	// 	}).first();
+
+	// 	if( closestElement.hasClass('dark'))
+	// 		$('.menu-icon').removeClass('dark').addClass('white');
+	// 	else
+	// 		$('.menu-icon').removeClass('white').addClass('dark');
+	// });
+
+})(jQuery);
+
+
+/*===================================
+=            NAV SLOGAN             =
+===================================*/
+
+(function($) {
+
+	$('.menu-toggle').on('click', function() {
+		$(this).toggleClass('open');
+		$("#sentence-wrapper").toggleClass('hide');
+		// $("#sentence-wrapper .words").toggleClass('words-1');
+	});
+
+	$("#js-rotating").Morphext({
+		// The [in] animation type. Refer to Animate.css for a list of available animations.
+		animation: "flipInX",
+		// An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+		separator: "|",
+		// The delay between the changing of each phrase in milliseconds.
+		speed: 4000,
+		complete: function () {
+		    // Called after the entrance animation is executed.
+		}
+	});	
 
 })(jQuery);
 
@@ -115,7 +154,8 @@ jQuery(window).on("orientationchange",function($){
 			{
 				breakpoint: 		480,
 				settings: {
-					unslick: 		true,
+					slidesToShow: 	2,
+					slidesToScroll: 2
 				}
 			}
 		]
@@ -124,6 +164,45 @@ jQuery(window).on("orientationchange",function($){
 		// instead of a settings object
 	});
 
+})(jQuery);
+
+/*===============================
+=            MASONRY            =
+===============================*/
+
+var windw = this;
+
+$.fn.followTo = function ( elem ) {
+    var $this = this,
+        $window = $(windw),
+        $bumper = $(elem),
+        bumperPos = $bumper.offset().top,
+        thisHeight = $this.outerHeight(),
+        setPosition = function(){
+            if ($window.scrollTop() > (bumperPos - thisHeight)) {
+                $this.css({
+                    position: 'absolute',
+                    top: (bumperPos - thisHeight)
+                });
+            } else {
+                $this.css({
+                    position: 'fixed',
+                    //top: 0
+                });
+            }
+        };
+    $window.resize(function()
+    {
+        bumperPos = pos.offset().top;
+        thisHeight = $this.outerHeight();
+        setPosition();
+    });
+    $window.scroll(setPosition);
+    setPosition();
+};
+
+(function($) {
+	$('.single-portfolio .entry-content').followTo('#colophon');
 })(jQuery);
 
 /*===============================

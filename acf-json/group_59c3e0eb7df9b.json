@@ -1,12 +1,12 @@
 {
-    "key": "group_58e25049efc57",
-    "title": "Office Location",
+    "key": "group_59c3e0eb7df9b",
+    "title": "Highlight Colour",
     "fields": [
         {
-            "key": "field_58e250540026b",
+            "key": "field_59c3e0f3a51d8",
             "label": "",
-            "name": "office_location",
-            "type": "google_map",
+            "name": "highlight_colour",
+            "type": "color_picker",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,28 +15,25 @@
                 "class": "",
                 "id": ""
             },
-            "center_lat": "",
-            "center_lng": "",
-            "zoom": "",
-            "height": ""
+            "default_value": "#000000"
         }
     ],
     "location": [
         [
             {
-                "param": "page",
+                "param": "post_type",
                 "operator": "==",
-                "value": "2045"
+                "value": "portfolio"
             }
         ]
     ],
-    "menu_order": 0,
-    "position": "normal",
+    "menu_order": -1,
+    "position": "side",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1506090360
+    "modified": 1506009363
 }

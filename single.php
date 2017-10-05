@@ -19,7 +19,7 @@ get_header(); ?>
 	<section id="feature-image" class="parallax-window" data-bleed="50" data-parallax="scroll" data-image-src="<?php echo $featureimage[url]; ?>">
 		<div class="caption table">
 			<div class="cell bottom">
-				<div class="container">
+				<div class="wrapper">
 					<h1><?php echo get_the_title(  ); ?></h1>
 					<hr>
 					<h2><?php echo date("jS M Y", $post_date); ?></h2>

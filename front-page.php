@@ -11,10 +11,10 @@ get_header(); ?>
 	<?php 
 	$featureimage = wp_get_attachment_url( get_post_thumbnail_id($post->ID));
 	?>
-	<section id="feature-image" class="parallax-window" data-bleed="50" data-parallax="scroll" data-image-src="<?php echo $featureimage; ?>"></section>
+	<section id="feature-image" class="section light parallax-window" data-bleed="50" data-parallax="scroll" data-image-src="<?php echo $featureimage; ?>"></section>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main container" role="main">
+	<div id="primary" class="content-area section dark">
+		<main id="main" class="site-main container narrow" role="main">
 
 		<?php
 		if ( have_posts() ) :
@@ -64,7 +64,7 @@ get_header(); ?>
 
 	</div>
 
-	<div id="brands">
+	<div id="brands" class="section light">
 		<div class="container">
 		<?php $brands = get_field('brands', 'options'); if( $brands ): ?>
 			<div class="brandicons">

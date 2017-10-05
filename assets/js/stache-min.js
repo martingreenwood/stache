@@ -1,1 +1,390 @@
-!function(){function e(e){return document.getElementById(e)}function n(){function n(){r+=1;var e=(100/l*r<<0)+"%";if(s.style.width=e,a.innerHTML="Loading "+e,r===l)return o()}function o(){t.style.opacity=0,setTimeout(function(){t.style.display="none"},1200)}var t=e("loader"),s=e("progress"),a=e("progstat"),i=document.images,r=0,l=i.length;if(0==l)return o();for(var d=0;d<l;d++){var c=new Image;c.onload=n,c.onerror=n,c.src=i[d].src}}document.addEventListener("DOMContentLoaded",n,!1)}(jQuery),function($){var e=$(document),n=$("#masthead"),o="scrolled";e.scroll(function(){n.toggleClass("scrolled",e.scrollTop()>=10)})}(jQuery),jQuery(window).on("orientationchange",function($){0==window.orientation?($("#turnme").removeClass("show"),$("body").removeClass("disablescroll")):($("#turnme").addClass("show"),$("body").addClass("disablescroll"))}),function($){$(".brandicons").slick({infinite:!0,slidesToShow:8,speed:300,dots:!1,arrows:!1,slidesToScroll:1,autoplay:!0,autoplaySpeed:3e3,responsive:[{breakpoint:1024,settings:{slidesToShow:8,slidesToScroll:8,infinite:!0,dots:!0}},{breakpoint:600,settings:{slidesToShow:4,slidesToScroll:4}},{breakpoint:480,settings:{unslick:!0}}]})}(jQuery),function($){var e=$(".grid").imagesLoaded(function(){e.masonry({columnWidth:".grid-sizer",itemSelector:".grid-item",gutter:2,percentPosition:!0})})}(jQuery),function($){function e(e){var t=e.find(".marker"),s={zoom:13,center:new google.maps.LatLng(0,0),mapTypeId:google.maps.MapTypeId.ROADMAP},a=new google.maps.Map(e[0],s);return a.markers=[],t.each(function(){n($(this),a)}),o(a),a}function n(e,n){var o=new google.maps.LatLng(e.attr("data-lat"),e.attr("data-lng")),t={url:e.attr("data-icon"),size:new google.maps.Size(64,64),scaledSize:new google.maps.Size(64,64)},s=new google.maps.Marker({position:o,map:n,icon:t});if(n.markers.push(s),e.html()){var a=new google.maps.InfoWindow({content:e.html()});google.maps.event.addListener(s,"click",function(){a.open(n,s)})}}function o(e){var n=new google.maps.LatLngBounds;$.each(e.markers,function(e,o){var t=new google.maps.LatLng(o.position.lat(),o.position.lng());n.extend(t)}),1==e.markers.length?(e.setCenter(n.getCenter()),e.setZoom(13)):e.fitBounds(n)}var t=null;$(document).ready(function(){$("#map").each(function(){t=e($(this))})})}(jQuery);
+/**
+ * File stache.js.
+ *
+ * Contains shit to make the theme do awesome stuff. (enqueue to min file genius)
+ *
+ */
+
+/*==============================
+=            LOADER            =
+==============================*/
+
+(function($){
+
+	function id(v){ return document.getElementById(v); }
+	function loadbar() {
+		var ovrl = id("loader"),
+			prog = id("progress"),
+			stat = id("progstat"),
+			img = document.images,
+			c = 0,
+			tot = img.length;
+		if(tot == 0) return doneLoading();
+
+		function imgLoaded(){
+			c += 1;
+			var perc = ((100/tot*c) << 0) +"%";
+			prog.style.width = perc;
+			stat.innerHTML = "Loading "+ perc;
+			if(c===tot) return doneLoading();
+		}
+		function doneLoading(){
+			ovrl.style.opacity = 0;
+			setTimeout(function(){ 
+				ovrl.style.display = "none";
+			}, 1200);
+		}
+		for(var i=0; i<tot; i++) {
+			var tImg     = new Image();
+			tImg.onload  = imgLoaded;
+			tImg.onerror = imgLoaded;
+			tImg.src     = img[i].src;
+		}
+	}
+	document.addEventListener('DOMContentLoaded', loadbar, false);
+
+})(jQuery);
+
+/*===============================
+=            HEADER             =
+===============================*/
+
+(function($) {
+
+	var $document = $(document),
+	$element = $('#masthead'),
+	className = 'scrolled';
+
+	$document.scroll(function() {
+		$element.toggleClass(className, $document.scrollTop() >= 10);
+	});
+
+	// $(document).scroll( function() {
+	// 	var scrollTop = $(this).scrollTop() + 100; // 40px - Fixed nav height
+	// 	var closestElement = $(this).find('.section').filter( function() {
+	// 		return $(this).offset().top > scrollTop;      
+	// 	}).first();
+
+	// 	if( closestElement.hasClass('dark'))
+	// 		$('.menu-icon').removeClass('dark').addClass('white');
+	// 	else
+	// 		$('.menu-icon').removeClass('white').addClass('dark');
+	// });
+
+})(jQuery);
+
+
+/*===================================
+=            NAV SLOGAN             =
+===================================*/
+
+(function($) {
+
+	$('.menu-toggle').on('click', function() {
+		$(this).toggleClass('open');
+		$("#sentence-wrapper").toggleClass('hide');
+		// $("#sentence-wrapper .words").toggleClass('words-1');
+	});
+
+	$("#js-rotating").Morphext({
+		// The [in] animation type. Refer to Animate.css for a list of available animations.
+		animation: "flipInX",
+		// An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+		separator: "|",
+		// The delay between the changing of each phrase in milliseconds.
+		speed: 4000,
+		complete: function () {
+		    // Called after the entrance animation is executed.
+		}
+	});	
+
+})(jQuery);
+
+
+/*===================================
+=            ORIENTATION            =
+===================================*/
+
+jQuery(window).on("orientationchange",function($){
+	if(window.orientation == 0) // Portrait
+	{
+		$('#turnme').removeClass('show');
+		$('body').removeClass('disablescroll');
+	}
+	else // Landscape
+	{
+		$('#turnme').addClass('show');
+		$('body').addClass('disablescroll');
+	}
+});
+
+/*==============================
+=            SLIDER            =
+==============================*/
+
+(function($) {
+
+	$('.brandicons').slick({
+		infinite: 		true,
+		slidesToShow: 	8,
+		speed: 			300,
+		dots: 			false,
+		arrows: 		false,
+		slidesToScroll: 1,
+		autoplay: 		true,
+		autoplaySpeed: 	3000,
+
+		responsive: [
+			{
+				breakpoint: 		1024,
+				settings: {
+					slidesToShow: 	8,
+					slidesToScroll: 8,
+					infinite: 		true,
+					dots: 			true
+				}
+			},
+			{
+				breakpoint: 		600,
+				settings: {
+					slidesToShow: 	4,
+					slidesToScroll: 4
+				}
+			},
+			{
+				breakpoint: 		480,
+				settings: {
+					slidesToShow: 	2,
+					slidesToScroll: 2
+				}
+			}
+		]
+		// You can unslick at a given breakpoint now by adding:
+		// settings: "unslick"
+		// instead of a settings object
+	});
+
+})(jQuery);
+
+/*===============================
+=            MASONRY            =
+===============================*/
+
+var windw = this;
+
+$.fn.followTo = function ( elem ) {
+    var $this = this,
+        $window = $(windw),
+        $bumper = $(elem),
+        bumperPos = $bumper.offset().top,
+        thisHeight = $this.outerHeight(),
+        setPosition = function(){
+            if ($window.scrollTop() > (bumperPos - thisHeight)) {
+                $this.css({
+                    position: 'absolute',
+                    top: (bumperPos - thisHeight)
+                });
+            } else {
+                $this.css({
+                    position: 'fixed',
+                    //top: 0
+                });
+            }
+        };
+    $window.resize(function()
+    {
+        bumperPos = pos.offset().top;
+        thisHeight = $this.outerHeight();
+        setPosition();
+    });
+    $window.scroll(setPosition);
+    setPosition();
+};
+
+(function($) {
+	$('.single-portfolio .entry-content').followTo('#colophon');
+})(jQuery);
+
+/*===============================
+=            MASONRY            =
+===============================*/
+
+(function($) {
+
+	var $grid = $('.grid').imagesLoaded( function() {
+		// init Masonry after all images have loaded
+		$grid.masonry({
+			columnWidth: 		'.grid-sizer',
+			itemSelector: 		'.grid-item',
+			gutter: 			2,
+			percentPosition: 	true
+		});
+	});
+
+})(jQuery);
+
+/*===========================
+=            MAP            =
+===========================*/
+
+(function($) {
+
+	function new_map( $el ) {
+		
+		// var
+		var $markers = $el.find('.marker');
+		
+		// vars
+		var args = {
+			zoom		: 13,
+			center		: new google.maps.LatLng(0, 0),
+			mapTypeId	: google.maps.MapTypeId.ROADMAP
+		};
+		
+		// create map	        	
+		var map = new google.maps.Map( $el[0], args);
+		
+		
+		// add a markers reference
+		map.markers = [];
+		
+		// add markers
+		$markers.each(function(){
+			
+	    	add_marker( $(this), map );
+			
+		});
+		
+		// center map
+		center_map( map );
+		
+		// return
+		return map;
+		
+	}
+
+	/*
+	*  add_marker
+	*
+	*  This function will add a marker to the selected Google Map
+	*
+	*  @type	function
+	*  @date	8/11/2013
+	*  @since	4.3.0
+	*
+	*  @param	$marker (jQuery element)
+	*  @param	map (Google Map object)
+	*  @return	n/a
+	*/
+
+	function add_marker( $marker, map ) {
+
+		// var
+		var latlng = new google.maps.LatLng( $marker.attr('data-lat'), $marker.attr('data-lng') );
+
+		var icon = {
+			url: $marker.attr('data-icon'), // url
+			size: new google.maps.Size(64, 64),     // original size you defined in the SVG file
+			scaledSize: new google.maps.Size(64, 64), // scaled size
+			//origin: new google.maps.Point(0,0), // origin
+			//anchor: new google.maps.Point(0, 0) // anchor
+		}
+
+		// create marker
+		var marker = new google.maps.Marker({
+			position	: latlng,
+			map			: map,
+			icon 		: icon
+		});
+
+		// add to array
+		map.markers.push( marker );
+
+		// if marker contains HTML, add it to an infoWindow
+		if( $marker.html() )
+		{
+			// create info window
+			var infowindow = new google.maps.InfoWindow({
+				content		: $marker.html()
+			});
+
+			// show info window when marker is clicked
+			google.maps.event.addListener(marker, 'click', function() {
+
+				infowindow.open( map, marker );
+
+			});
+		}
+
+	}
+
+	/*
+	*  center_map
+	*
+	*  This function will center the map, showing all markers attached to this map
+	*
+	*  @type	function
+	*  @date	8/11/2013
+	*  @since	4.3.0
+	*
+	*  @param	map (Google Map object)
+	*  @return	n/a
+	*/
+
+	function center_map( map ) {
+
+		// vars
+		var bounds = new google.maps.LatLngBounds();
+
+		// loop through all markers and create bounds
+		$.each( map.markers, function( i, marker ){
+
+			var latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
+
+			bounds.extend( latlng );
+
+		});
+
+		// only 1 marker?
+		if( map.markers.length == 1 )
+		{
+			// set center of map
+		    map.setCenter( bounds.getCenter() );
+		    map.setZoom( 13 );
+		}
+		else
+		{
+			// fit to bounds
+			map.fitBounds( bounds );
+		}
+
+	}
+
+	/*
+	*  document ready
+	*
+	*  This function will render each map when the document is ready (page has loaded)
+	*
+	*  @type	function
+	*  @date	8/11/2013
+	*  @since	5.0.0
+	*
+	*  @param	n/a
+	*  @return	n/a
+	*/
+	// global var
+	var map = null;
+
+	$(document).ready(function(){
+
+		$('#map').each(function(){
+
+			// create map
+			map = new_map( $(this) );
+
+		});
+
+	});
+
+})(jQuery);
+

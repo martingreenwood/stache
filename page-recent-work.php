@@ -20,7 +20,7 @@ get_header(); ?>
 	<section id="feature-image" class="parallax-window" data-bleed="50" data-parallax="scroll" data-image-src="<?php echo $featureimage; ?>">
 		<div class="caption table">
 			<div class="cell bottom">
-				<div class="container">
+				<div class="wrapper">
 					<h1><?php the_title(); ?></h1>
 					<hr>
 					<h2><?php the_field( 'sub_heading' ); ?></h2>
@@ -44,7 +44,7 @@ get_header(); ?>
 	</div>
 
 	<div id="portfolio">
-		<div class="container narrow">
+		<div class="container">
 		<?php $i = 1; $team = new WP_Query( array( 'post_type' => 'portfolio', 'posts_per_page' => -1 ) ); ?>
 			<div class="grid">
 			<div class="grid-sizer"></div>

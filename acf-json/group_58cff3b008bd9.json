@@ -23,6 +23,7 @@
             "label": "Logo",
             "name": "logo",
             "type": "image",
+            "value": null,
             "instructions": "Add a logo - make it an SVG genius",
             "required": 0,
             "conditional_logic": 0,
@@ -63,6 +64,7 @@
             "label": "Brands",
             "name": "brands",
             "type": "gallery",
+            "value": null,
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -82,6 +84,148 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_59d60434859ad",
+            "label": "Social",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_59d6043f859ae",
+            "label": "Facebook",
+            "name": "facebook",
+            "type": "url",
+            "value": null,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59d60449859af",
+            "label": "Twitter",
+            "name": "twitter",
+            "type": "url",
+            "value": null,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59d60450859b0",
+            "label": "Instagram",
+            "name": "instagram",
+            "type": "url",
+            "value": null,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59d60462859b1",
+            "label": "LinkedIn",
+            "name": "linkedin",
+            "type": "url",
+            "value": null,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59d60480dd4e1",
+            "label": "We Are...",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_59d60494dd4e3",
+            "label": "Slogans",
+            "name": "slogans",
+            "type": "repeater",
+            "value": null,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Line",
+            "sub_fields": [
+                {
+                    "key": "field_59d604a3dd4e4",
+                    "label": "Slogan",
+                    "name": "slogan",
+                    "type": "text",
+                    "value": null,
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
         },
         {
             "key": "field_58db7b5dd9108",
@@ -104,6 +248,7 @@
             "label": "Footer Content",
             "name": "footer_content",
             "type": "wysiwyg",
+            "value": null,
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -136,5 +281,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1490779007
+    "modified": 1507201158
 }

@@ -11,6 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('span4'); ?>>
 	<div class="entry-content">
+		<h1>About</h1>
 		<?php
 			the_content();
 		?>

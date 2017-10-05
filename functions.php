@@ -47,6 +47,7 @@ function stache_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 	add_image_size( 'team', '600', '600', true );
+	add_image_size( 'snap', '600', '400', true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -109,13 +110,16 @@ function stache_scripts() {
 	wp_enqueue_style( 'stache-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'stache-parallax', get_template_directory_uri() . '/assets/js/parallax.min.js','','',true );
 	wp_enqueue_script( 'stache-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDghRTYRnA6R3P1LJ6wJP4AjTFoDsva0jk','','',true );
-	wp_enqueue_script( 'stache-slick', get_template_directory_uri() . '/assets/js/slick.min.js','','',true );
+	wp_enqueue_script( 'stache-fa', 'https://use.fontawesome.com/c654f80464.js','','',true );
+
+	wp_enqueue_script( 'stache-parallax', get_template_directory_uri() . '/assets/js/parallax.js','','',true );
+	wp_enqueue_script( 'stache-slick', get_template_directory_uri() . '/assets/js/slick.js','','',true );
+	wp_enqueue_script( 'stache-morphext', get_template_directory_uri() . '/assets/js/morphext.min.js','','',true );
 	wp_enqueue_script( 'stache-masonry', '//unpkg.com/masonry-layout@4.1.1/dist/masonry.pkgd.min.js','','',true );
 	wp_enqueue_script( 'stache-imgload', '//unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js','','',true );
-	wp_enqueue_script( 'stache-nav', get_template_directory_uri() . '/assets/js/navigation-min.js','','',true );
-	wp_enqueue_script( 'stache-js', get_template_directory_uri() . '/assets/js/stache-min.js','','',true );
+	wp_enqueue_script( 'stache-nav', get_template_directory_uri() . '/assets/js/navigation.js','','',true );
+	wp_enqueue_script( 'stache-js', get_template_directory_uri() . '/assets/js/stache.js','','',true );
 }
 add_action( 'wp_enqueue_scripts', 'stache_scripts' );
 
@@ -125,12 +129,10 @@ add_action( 'wp_enqueue_scripts', 'stache_scripts' );
  * AIzaSyDghRTYRnA6R3P1LJ6wJP4AjTFoDsva0jk
  */
 function my_acf_init() {
-	
 	acf_update_setting('google_api_key', 'AIzaSyDghRTYRnA6R3P1LJ6wJP4AjTFoDsva0jk');
 }
 
 add_action('acf/init', 'my_acf_init');
-
 
 /**
  * TYPEKIT
@@ -150,7 +152,6 @@ function stache_typekit() {
 <?php
 }
 add_action('wp_head', 'stache_typekit', 99);
-
 
 /**
  * Custom post types.

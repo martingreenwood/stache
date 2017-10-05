@@ -13,7 +13,7 @@
 
 	</div>
 
-	<footer id="colophon" class="site-footer">
+	<footer id="colophon" class="site-footer section light">
 		<div class="site-info">
 			<?php the_field( 'footer_content', 'options' );	?>
 		</div>
